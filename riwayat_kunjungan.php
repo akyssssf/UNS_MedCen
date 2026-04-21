@@ -2,7 +2,7 @@
 session_start();
 include 'api/koneksi.php';
 
-if (!isset($_SESSION['nik'])) { header("Location: login.php"); exit(); }
+if (!isset($_SESSION['nik'])) { header("Location: /login.php"); exit(); }
 
 $nik  = $_SESSION['nik'];
 $nama = $_SESSION['nama'];
@@ -376,7 +376,7 @@ foreach ($kunjungan_list as $k) {
           </button>
           <?php endif; ?>
           <?php if (!$is_done && $k['token']): ?>
-          <form action="api/cekKunjungan.php" method="POST" style="display:inline;">
+          <form action="/api/cekKunjungan.php" method="POST" style="display:inline;">
             <input type="hidden" name="jalur" value="token">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars($k['token']); ?>">
             <button type="submit" class="btn-isi-survei">✍️ Isi Survei</button>

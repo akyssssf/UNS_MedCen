@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['nik'])) { header("Location: login.php"); exit(); }
+if (!isset($_SESSION['nik'])) { header("Location: /login.php"); exit(); }
 
 $jalur = $_SESSION['jalur_survei'] ?? null;
-if (!$jalur) { header("Location: dashboard.php"); exit(); }
+if (!$jalur) { header("Location: /dashboard.php"); exit(); }
 if ($jalur === 'kunjungan' && !isset($_SESSION['id_kunjungan_aktif'])) {
-    header("Location: dashboard.php"); exit();
+    header("Location: /dashboard.php"); exit();
 }
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -459,7 +459,7 @@ $total_steps = $is_kunjungan ? 3 : 3;
       <?php endfor; ?>
     </div>
 
-    <form id="survey-form" action="api/prosesSurvei.php" method="POST">
+    <form id="survey-form" action="/api/prosesSurvei.php" method="POST">
       <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
       <input type="hidden" name="jalur" value="<?php echo $jalur; ?>">
       <input type="hidden" name="poli" value="<?php echo htmlspecialchars($poli ?? 'Umum'); ?>">

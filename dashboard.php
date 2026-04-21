@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['nik'])) { header("Location: login.php"); exit(); }
+if (!isset($_SESSION['nik'])) { header("Location: /login.php"); exit(); }
 
 $flash = $_SESSION['flash'] ?? null;
 unset($_SESSION['flash']);
@@ -327,7 +327,7 @@ $inisial = strtoupper(substr(trim($nama), 0, 1));
       <div class="jc-badge" style="color:#2563eb;">⭐ Paling Direkomendasikan</div>
       <div class="jc-desc">Masukkan kode Token dari struk berobat Anda. Poli & data kunjungan otomatis terdeteksi.</div>
       <div class="jc-hint" style="background:#eff6ff;color:#2563eb;">💡 Format: <strong>TKN-001</strong></div>
-      <form action="api/cekKunjungan.php" method="POST">
+      <form action="/api/cekKunjungan.php" method="POST">
         <input type="hidden" name="jalur" value="token">
         <input type="text" name="token" class="jc-input"
           style="text-transform:uppercase;text-align:center;letter-spacing:.1em;font-weight:700;"
@@ -343,7 +343,7 @@ $inisial = strtoupper(substr(trim($nama), 0, 1));
       <div class="jc-badge" style="color:#16a34a;">🟢 Struk Hilang? Tidak Masalah</div>
       <div class="jc-desc">Pilih tanggal kunjungan Anda. Sistem akan mencocokkan riwayat kunjungan secara otomatis.</div>
       <div class="jc-hint" style="background:#f0fdf4;color:#16a34a;">💡 Pilih tanggal saat Anda berobat ke klinik</div>
-      <form action="api/cekKunjungan.php" method="POST">
+      <form action="/api/cekKunjungan.php" method="POST">
         <input type="hidden" name="jalur" value="manual">
         <input type="date" name="tanggal" class="jc-input" max="<?php echo date('Y-m-d'); ?>" required/>
         <button type="submit" class="jc-btn btn-green">🔍 Cari Kunjungan</button>
@@ -365,8 +365,8 @@ $inisial = strtoupper(substr(trim($nama), 0, 1));
 
 </main>
 
-<form id="form-logout" action="api/logout.php" method="POST" style="display:none;"></form>
-<form id="form-survei-umum" action="api/cekKunjungan.php" method="POST" style="display:none;">
+<form id="form-logout" action="/api/logout.php" method="POST" style="display:none;"></form>
+<form id="form-survei-umum" action="/api/cekKunjungan.php" method="POST" style="display:none;">
   <input type="hidden" name="jalur" value="umum">
 </form>
 

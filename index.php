@@ -1176,7 +1176,7 @@ function ensureNasionalLoaded() {
   if (gAllRowsCache && gKolomCache) return Promise.resolve();
   if (gFetchPromise) return gFetchPromise;
 
-  gFetchPromise = fetch('api/fetchBPS.php?wilayah=0000000')
+  gFetchPromise = fetch('/api/fetchBPS.php?wilayah=0000000')
     .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(json => {
       const { kolom, allRows } = parseBpsJson(json);
